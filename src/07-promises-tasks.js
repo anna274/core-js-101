@@ -29,8 +29,17 @@
  *      .catch((error) => console.log(error.message)) // 'Error: Wrong parameter is passed!
  *                                                    //  Ask her again.';
  */
-function willYouMarryMe(/* isPositiveAnswer */) {
-  throw new Error('Not implemented');
+function willYouMarryMe(isPositiveAnswer) {
+  return new Promise(((resolve, reject) => {
+    if (typeof isPositiveAnswer !== 'boolean') {
+      reject(new Error('Wrong parameter is passed! Ask her again.'));
+    }
+    if (isPositiveAnswer) {
+      resolve('Hooray!!! She said "Yes"!');
+    } else {
+      resolve('Oh no, she said "No".');
+    }
+  }));
 }
 
 
@@ -49,8 +58,13 @@ function willYouMarryMe(/* isPositiveAnswer */) {
  *    })
  *
  */
-function processAllPromises(/* array */) {
-  throw new Error('Not implemented');
+function processAllPromises(array) {
+  try {
+    const promise = Promise.all(array);
+    return promise;
+  } catch (error) {
+    return error;
+  }
 }
 
 /**
@@ -72,8 +86,13 @@ function processAllPromises(/* array */) {
  *    })
  *
  */
-function getFastestPromise(/* array */) {
-  throw new Error('Not implemented');
+function getFastestPromise(array) {
+  try {
+    const promise = Promise.race(array);
+    return promise;
+  } catch (error) {
+    return error;
+  }
 }
 
 /**
@@ -93,7 +112,13 @@ function getFastestPromise(/* array */) {
  *    });
  *
  */
+// eslint-disable-next-line no-unused-vars
 function chainPromises(/* array, action */) {
+  // const values = array.reduce((res, promise) => {
+  //   promise.then((value) => res.push(value)).catch();
+  //   return res;
+  // }, []);
+  // return Promise.resolve(values.slice(1).reduce(action));
   throw new Error('Not implemented');
 }
 
