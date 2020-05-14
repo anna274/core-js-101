@@ -113,13 +113,12 @@ function getFastestPromise(array) {
  *
  */
 // eslint-disable-next-line no-unused-vars
-function chainPromises(/* array, action */) {
-  // const values = array.reduce((res, promise) => {
-  //   promise.then((value) => res.push(value)).catch();
-  //   return res;
-  // }, []);
-  // return Promise.resolve(values.slice(1).reduce(action));
-  throw new Error('Not implemented');
+async function chainPromises(array, action) {
+  const values = await array.reduce((res, promise) => {
+    promise.then((value) => res.push(value)).catch();
+    return res;
+  }, []);
+  return Promise.resolve(values.reduce(action));
 }
 
 module.exports = {
